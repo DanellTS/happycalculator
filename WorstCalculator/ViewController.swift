@@ -10,9 +10,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var firstValue: UITextField!
-    
     @IBOutlet weak var secondValue: UITextField!
-
     @IBOutlet weak var result: UILabel!
     
     override func viewDidLoad() {
@@ -22,38 +20,41 @@ class ViewController: UIViewController {
     
     func getValues() -> [String : Double] {
         var data = [String : Double]()
-        var firstValueInt = Double(firstValue.text ?? "1")
-        var secondValueInt = Double(secondValue.text ?? "1")
         
-        data["firstValue"] = firstValueInt
-        data["secondValue"] = secondValueInt
+        if let firstValueDouble = Double(firstValue.text!) {
+            if let secondValueDouble = Double(secondValue.text!){
+                data["firstValue"] = firstValueDouble
+                data["secondValue"] = secondValueDouble
+            }
+        }
+        
         
         return data;
     }
     
     
     @IBAction func sumBtn(_ sender: Any) {
-        var data = getValues();
-        result.text = String((data["firstValue"] ?? 1) + (data["secondValue"] ?? 1));
+        let data = getValues();
+        result.text = String((data["firstValue"]!) + (data["secondValue"]!));
         
     }
     
     
     @IBAction func subBtn(_ sender: Any) {
-        var data = getValues();
-        result.text = String((data["firstValue"] ?? 1) - (data["secondValue"] ?? 1));
+        let data = getValues();
+        result.text = String((data["firstValue"]!) - (data["secondValue"]!));
     }
     
     
     @IBAction func mulBtn(_ sender: Any) {
-        var data = getValues();
-        result.text = String((data["firstValue"] ?? 1) * (data["secondValue"] ?? 1));
+        let data = getValues();
+        result.text = String((data["firstValue"]!) * (data["secondValue"]!));
     }
     
     
     @IBAction func divBtn(_ sender: Any) {
-        var data = getValues();
-        result.text = String((data["firstValue"] ?? 1) / (data["secondValue"] ?? 1));
+        let data = getValues();
+        result.text = String((data["firstValue"]!) / (data["secondValue"]!));
     }
     
 
